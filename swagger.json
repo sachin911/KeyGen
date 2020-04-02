@@ -1,0 +1,93 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "KeyGen",
+    "description": "A RESTful service to random string generation",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "tags": [{
+    "name": "key",
+    "description": "API for random string"
+  }],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/key": {
+      "post": {
+        "tags": [
+          "key"
+        ],
+        "description": "insert the random key",
+        "parameters": [{
+          "name": "randomKey",
+          "in": "body",
+          "description": "Random key that needs to be inserted",
+          "schema": {
+            "$ref": "#/definitions/Key"
+          }
+        }],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New Key is created",
+            "schema": {
+              "$ref": "#/definitions/Key"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "key"
+        ],
+        "summary": "Get one unused key from the system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Key"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Key": {
+      "required": [
+        "random_key"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "random_key": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "is_used": {
+          "type": "boolean"
+        },
+        "gen_date": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
