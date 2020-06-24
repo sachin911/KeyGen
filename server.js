@@ -25,7 +25,7 @@ const port = config.serverPort;
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
 mongoose
-  .connect('mongodb://root:root@mongo:27017/RandomKey?authSource=admin&w=1', {
+  .connect(config.dbHost, {
     auth: { authdb: 'admin' },
     useNewUrlParser: true,
     useUnifiedTopology: true,
